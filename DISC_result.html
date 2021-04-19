@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>DISC结果查询</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="myCss.css" />
+    <link rel="stylesheet" type="text/css" href="progress.css" />
+
+    <!-- 引入 echarts.js -->
+    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <style>
+        .login-button {
+            /* 按钮美化 */
+            width: 300px;
+            /* 宽度 */
+            height: 20px;
+            /* 高度 */
+            border-width: 1px;
+            /* 边框宽度 */
+            border-radius: 5px;
+            /* 边框半径 */
+            background: #c9d6e4;
+            /* 背景颜色 */
+            cursor: pointer;
+            /* 鼠标移入按钮范围时出现手势 */
+            outline: none;
+            /* 不显示轮廓线 */
+            font-family: Microsoft YaHei;
+            /* 设置字体 */
+            color: white;
+            /* 字体颜色 */
+            font-size: 10px;
+            /* 字体大小 */
+            margin-bottom: -50px;
+        }
+        
+        .login-button:hover {
+            /* 鼠标移入按钮范围时改变颜色 */
+            background: #141a22;
+        }
+        
+        .parent {
+            vertical-align: middle;
+        }
+        
+        .outerDiv {
+            position: relative;
+        }
+        
+        .innerDiv {
+            position: absolute;
+            left: 50%;
+            top: 15%;
+            margin-left: -150px;
+            /*子div宽度的一半*/
+            margin-top: -150px;
+            /*子div高度的一半*/
+        }
+        
+        .innerDiv_query {
+            position: absolute;
+            left: 50%;
+            top: 17%;
+            margin-left: -200px;
+            /*子div宽度的一半*/
+            margin-top: -150px;
+            /*子div高度的一半*/
+        }
+        
+        .innerDiv_pic {
+            position: absolute;
+            top: 35%;
+            /* margin-left: -170px; */
+            margin-top: -150px;
+            /*子div高度的一半*/
+        }
+    </style>
+</head>
+
+<body>
+    <div style="display: flex;flex-direction: column;">
+        <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+        <div align="center" class="" style="width:100%;">
+            <div style="width: 60%;margin-top: 50px;">
+                <img style="margin: 0 auto;width: 80%;" src="http://kalistar.cn/chen/welcome.png">
+            </div>
+            <div class="title" align="center" style="margin-top: 30px;">
+                <h1>DISC人格测试</h1>
+            </div>
+            <div class="" style="width: 380px;height: 80px;display: flex;flex-direction: row;">
+                <div class="inputR">
+                    <label class="input_font">姓名：</label>
+                    <input type="text" class="input" id="name1" autocomplete="off">
+                </div>
+                <input type="button" id="query" value="查询" style="width: 50px;height: 34px;background-color: white;border: white;font-size: 16px;">
+            </div>
+            <div class="" style="width: 80%;margin-left: -50px;">
+
+                <div id="query_item" align="center">
+
+                    <script>
+                        var mydata = "";
+                        var re = "";
+                        document.getElementById("query").onclick = function() {
+                            re = ""
+                            var formdata = new FormData()
+                            formdata.append("name", document.getElementById("name1").value)
+                            $.ajax({
+                                // url: "http://kalistar.cn:82/result1",
+                                // url: "http://localhost:82/result1",
+                                url: "http://192.168.1.102:82/result/getDisc",
+                                data: formdata,
+                                type: "post",
+                                dataType: "json",
+                                async: false,
+                                cache: false,
+                                contentType: false,
+                                processData: false,
+                                success: function(json_data) {
+                                    console.log(json_data)
+                                    mydata = json_data
+                                }
+                            });
+                            for (var i = 0; i < mydata.length; i++) {
+                                console.log(i)
+                                re +=
+                                    //  '<div class="question"  onclick="chen">'+(i+1)+'.'+mydata[i].name+'&nbsp&nbsp&nbsp&nbsp'+mydata[i].telephone+'</div>'         +
+                                    ' <button  id="fun"  class="login-button"  name=' + i + '>' + (i + 1) + '.' + mydata[i].name + '&nbsp&nbsp&nbsp&nbsp' + mydata[i].telephone + '&nbsp&nbsp&nbsp&nbsp' + mydata[i].time + '</button></br></br>'
+                            }
+
+                            // re += '<div style="margin-bottom: 100px;"></div>';
+
+                            document.getElementById("query_item").innerHTML = re;
+                            // document.write(re);
+                            $('button[id="fun"]').click(function() {
+                                console.log(mydata)
+                                option.series[0].data[0].value[0] = mydata[this.name].dominance
+                                option.series[0].data[0].value[1] = mydata[this.name].influence
+                                option.series[0].data[0].value[2] = mydata[this.name].steadiness
+                                option.series[0].data[0].value[3] = mydata[this.name].compliance
+                                    // option.series[0].data[0].value[4] = mydata[this.name].neurotic
+                                option.radar.indicator[0].name = '支配性: ' + mydata[this.name].dominance
+                                option.radar.indicator[1].name = '影响性: ' + mydata[this.name].influence
+                                option.radar.indicator[2].name = '稳固性: ' + mydata[this.name].steadiness
+                                option.radar.indicator[3].name = '尽责性: ' + mydata[this.name].compliance
+                                    // option.radar.indicator[4].name = '神经质: ' + mydata[this.name].neurotic
+                                console.log(option)
+                                location.href = "#main";
+                                myChart.setOption(option);
+
+                                // option.series[0].data[0].value[0]
+                            });
+
+                        }
+                    </script>
+                </div>
+            </div>
+            <div id="main" class="" style="width: 100%;height: 240px;margin-top: 20px;"></div>
+            <div style="width: 100%;height: 310px;"></div>
+        </div>
+        <div>
+            <script type="text/javascript">
+                // document.getElementById("pic").style.visibility="hidden"
+                // 基于准备好的dom，初始化echarts实例
+                var myChart = echarts.init(document.getElementById('main'));
+                // 指定图表的配置项和数据
+                var option = {
+                    title: {},
+                    color: ['#ff3333', '#00bbff'],
+                    tooltip: {},
+                    legend: {
+                        data: ['我的得分', '平均水平'],
+                        y: 'top',
+                        x: '63%',
+                        orient: 'vertical',
+                        padding: [20, 0, 0, 0],
+                        textStyle: {
+                            fontSize: 14
+                        }
+                    },
+                    radar: {
+                        // shape: 'circle',
+                        radius: 88,
+                        name: {
+                            textStyle: {
+                                color: '#000',
+                                backgroundColor: '#fff',
+                                borderRadius: 10,
+                                padding: [3, 5],
+                                fontSize: 14
+                            }
+                        },
+                        indicator: [{
+                            name: '支配性',
+                            max: 40,
+                            axisLabel: {
+                                show: true,
+                                fontSize: 10,
+                                color: '#838D9E',
+                                showMaxLabel: false, //不显示最大值，即外圈不显示数字30
+                                showMinLabel: true, //显示最小数字，即中心点显示0
+                            },
+                        }, {
+                            name: '影响性',
+                            max: 36
+                        }, {
+                            name: '稳固性',
+                            max: 36
+                        }, {
+                            name: '尽责性',
+                            max: 36
+                        }, ],
+                        splitLine: {
+                            show: true,
+                            lineStyle: {
+                                width: 2,
+                                color: 'rgba(0,141,158,.1)', // 设置网格的颜色
+                            },
+                        },
+                    },
+                    series: [{
+                        name: '预算 vs 开销（Budget vs spending）',
+                        type: 'radar',
+                        /*曲线圆点*/
+                        lineStyle: {
+                            width: 2,
+                        },
+                        // areaStyle: {normal: {}},
+                        data: [{
+                            value: [9, 9, 9, 9],
+                            name: '我的得分'
+                        }, {
+                            value: [9, 9, 9, 9],
+                            name: '平均水平'
+                        }]
+                    }]
+                };
+                option.series[0].data[0].value[0]
+                    // option.series[0].data[0].value[0]=data[0].open;
+                    // option.series[0].data[0].value[1]=data[0].conscientious;
+                    // option.series[0].data[0].value[2]=data[0].outgoing;
+                    // option.series[0].data[0].value[3]=data[0].pleasant;
+                    // option.series[0].data[0].value[4]=data[0].neurotic;
+                    // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+            </script>
+        </div>
+    </div>
+</body>
+
+</html>
