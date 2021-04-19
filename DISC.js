@@ -43,7 +43,7 @@ btn.addEventListener('click', function() {
         }).then(function(response) {
             alert(response)
             if (response.data == "success") {
-                window.location = "result.html"
+                window.location = "DISC_result.html"
             }
         })
     }
