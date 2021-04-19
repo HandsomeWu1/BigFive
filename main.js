@@ -1,4 +1,5 @@
 var problems = null
+var path = "http://192.168.1.102:82"
 var btn = document.querySelector("#btn")
     // var app1 = new Vue({
     //     el: "#btn",
@@ -57,23 +58,25 @@ btn.addEventListener('click', function() {
         } else {
             sex = "女"
         }
-        axios.post("http://192.168.1.109:83/result/new", {
+        axios.post(path + "/result/newBigfive", {
             age: uage.value,
             list: mychoose,
             name: uname.value,
             telephone: phone.value,
-            time: "123456"
         }).then(function(response) {
-            console.log(response)
+            alert(response.data)
+            if (response.data == "success") {
+                window.location = "result.html"
+            }
         })
     }
-    notdone = []
+
 })
 
 
 function getProblems() {
     var that = this;
-    axios.get("http://192.168.1.109:83/title/query").then(function(res) {
+    axios.get(path + "/title/bigfive").then(function(res) {
         // that.msg = res.data;
         problems = res.data
         console.log(problems)

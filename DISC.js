@@ -1,6 +1,6 @@
 var problems = null
-// var path = "http://192.168.43.75:83"
-var path="http://localhost:82"
+    // var path = "http://192.168.43.75:83"
+var path = "http://localhost:82"
 var btn = document.querySelector("#btn")
 btn.addEventListener('click', function() {
     var uname = document.querySelector("#uname")
@@ -14,8 +14,8 @@ btn.addEventListener('click', function() {
     var mychoose = ""
         //判断
     for (let i = 3; i < ipts.length; i += 4) {
-        if (ipts[i].checked ==false &&  ipts[i + 1].checked ==false  && ipts[i + 2].checked ==false && ipts[i + 3].checked == false) {
-            notdone.push(parseInt((i-3) / 4 + 1))
+        if (ipts[i].checked == false && ipts[i + 1].checked == false && ipts[i + 2].checked == false && ipts[i + 3].checked == false) {
+            notdone.push(parseInt((i - 3) / 4 + 1))
         }
         for (let j = 0; j < 4; j++) {
             if (ipts[i + j].checked == true) {
@@ -38,14 +38,16 @@ btn.addEventListener('click', function() {
             age: uage.value,
             res: mychoose,
             name: uname.value,
-            sex:sex,
+            sex: sex,
             telephone: phone.value,
         }).then(function(response) {
-            console.log(response)
-            alert("提交成功")
+            alert(response)
+            if (response.data == "success") {
+                window.location = "result.html"
+            }
         })
     }
-//     notdone = []
+    //     notdone = []
 })
 
 
