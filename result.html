@@ -111,8 +111,8 @@
                             var formdata = new FormData()
                             formdata.append("name", document.getElementById("name1").value)
                             $.ajax({
-                                url: "http://kalistar.cn:82/result1",
-                                // url: "http://localhost:82/result1",  
+                                // url: "http://kalistar.cn:82/result1",
+                                url: "http://localhost:82/result/getBigfive",  
                                 data: formdata,
                                 type: "post",
                                 dataType: "json",
@@ -136,17 +136,17 @@
                             document.getElementById("query_item").innerHTML = re;
                             // document.write(re);
                             $('button[id="fun"]').click(function() {
-                                console.log(mydata)
+                                console.log("mydattttttttttttttttttttt"+mydata)
                                 option.series[0].data[0].value[0] = mydata[this.name].open
-                                option.series[0].data[0].value[1] = mydata[this.name].conscientious
-                                option.series[0].data[0].value[2] = mydata[this.name].outgoing
-                                option.series[0].data[0].value[3] = mydata[this.name].pleasant
-                                option.series[0].data[0].value[4] = mydata[this.name].neurotic
+                                option.series[0].data[0].value[1] = mydata[this.name].conscientiousness
+                                option.series[0].data[0].value[2] = mydata[this.name].extraversion
+                                option.series[0].data[0].value[3] = mydata[this.name].agreeableness
+                                option.series[0].data[0].value[4] = mydata[this.name].neuroticism
                                 option.radar.indicator[0].name = '开放性: ' + mydata[this.name].open
-                                option.radar.indicator[1].name = '尽责性: ' + mydata[this.name].conscientious
-                                option.radar.indicator[2].name = '外倾性: ' + mydata[this.name].outgoing
-                                option.radar.indicator[3].name = '宜人性: ' + mydata[this.name].pleasant
-                                option.radar.indicator[4].name = '神经质: ' + mydata[this.name].neurotic
+                                option.radar.indicator[1].name = '尽责性: ' + mydata[this.name].conscientiousness
+                                option.radar.indicator[2].name = '外倾性: ' + mydata[this.name].extraversion
+                                option.radar.indicator[3].name = '宜人性: ' + mydata[this.name].agreeableness
+                                option.radar.indicator[4].name = '神经质: ' + mydata[this.name].neuroticism
                                 console.log(option)
                                 location.href = "#main";
                                 myChart.setOption(option);
