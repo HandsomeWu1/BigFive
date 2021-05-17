@@ -1,5 +1,6 @@
 var problems = null
-var path = "http://192.168.1.102:82"
+//var path = "http://192.168.1.102:82"
+var path = "http://localhost:82"
 var btn = document.querySelector("#btn")
     // var app1 = new Vue({
     //     el: "#btn",
@@ -48,30 +49,43 @@ btn.addEventListener('click', function() {
         }
         flag = 0
     }
-    if (notdone.length != 0) {
-        alert("第" + notdone + "题还没完成")
-    } else if (uname.value == "" || phone.value == "" || uage.value == "" || sex == 0) {
-        alert("姓名或手机号或年龄或性别未输入")
-    } else if (notdone.length == 0) {
-        if (sex == 1) {
-            sex = "男"
-        } else {
-            sex = "女"
+    // if (notdone.length != 0) {
+    //     alert("第" + notdone + "题还没完成")
+    // } else if (uname.value == "" || phone.value == "" || uage.value == "" || sex == 0) {
+    //     alert("姓名或手机号或年龄或性别未输入")
+    // } else if (notdone.length == 0) {
+    //     if (sex == 1) {
+    //         sex = "男"
+    //     } else {
+    //         sex = "女"
+    //     }
+    //     axios.post(path + "/result/newBigfive", {
+    //         age: uage.value,
+    //         //list: mychoose,
+    //         list:[4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4],
+    //         name: uname.value,
+    //         telephone: phone.value,
+    //     }).then(function(response) {
+    //         alert(response.data)
+    //         if (response.data == "success") {
+    //             window.location = "result.html"
+    //         }
+    //     })
+    // }
+    axios.post(path + "/result/newBigfive", {
+        age: uage.value,
+        //list: mychoose,
+        list:[4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4],
+        name: uname.value,
+        telephone: phone.value,
+    }).then(function(response) {
+        alert(response.data)
+        if (response.data == "success") {
+            window.location = "result.html"
         }
-        axios.post(path + "/result/newBigfive", {
-            age: uage.value,
-            list: mychoose,
-            name: uname.value,
-            telephone: phone.value,
-        }).then(function(response) {
-            alert(response.data)
-            if (response.data == "success") {
-                window.location = "result.html"
-            }
-        })
-    }
-
+    })
 })
+
 
 
 function getProblems() {
