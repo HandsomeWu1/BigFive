@@ -1,11 +1,13 @@
 var problems = null
-// var path = "http://192.168.43.75:82"
-var path = "http://localhost:82"
+    // var path = "http://192.168.43.75:82"
+    // var path = "http://localhost:82"
+var path = "http://47.99.164.238:9832"
 var btn = document.querySelector("#btn")
 btn.addEventListener('click', function() {
     var uname = document.querySelector("#uname")
     var uage = document.querySelector("#uage")
     var sex = document.querySelector("#SEX").selectedIndex //性别1男2女
+    var group = document.querySelector("#group").selectedIndex //选择组织
     var phone = document.querySelector("#phone")
     var notdone = []
         // console.log(uname.value, sex, phone.value, uage.value)
@@ -26,8 +28,8 @@ btn.addEventListener('click', function() {
     console.log(mychoose)
     if (notdone.length != 0) {
         alert("第" + notdone + "题还没完成")
-    } else if (uname.value == "" || phone.value == "" || uage.value == "" || sex == 0) {
-        alert("姓名或手机号或年龄或性别未输入")
+    } else if (uname.value == "" || phone.value == "" || uage.value == "" || sex == 0 || group == 0) {
+        alert("姓名或手机号或年龄或性别或组织未输入")
     } else if (notdone.length == 0) {
         if (sex == 1) {
             sex = "男"
@@ -38,10 +40,11 @@ btn.addEventListener('click', function() {
             age: uage.value,
             res: mychoose,
             name: uname.value,
+            group: group,
             sex: sex,
             telephone: phone.value,
         }).then(function(response) {
-            alert(response)
+            alert(response.data)
             if (response.data == "success") {
                 window.location = "DISC_result.html"
             }

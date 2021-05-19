@@ -3,8 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.css">
     <link rel="stylesheet" href="./main.css">
@@ -34,6 +33,16 @@
                 </select>
             </div>
             <div class="form-group">
+                <lable><span class="req">*</span>您想要加入的组织</lable>
+                <br>
+                <select name="group" id="group" class="form-control sex">
+                    <option value="none">请选择</option>
+                    <option value="1">创业苗圃</option>
+                    <option value="2">创业班</option>
+                    <option value="3">创艺苗圃</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <lable><span class="req">*</span>手机号</lable>
                 <input type="text" class="form-control" id="phone">
             </div>
@@ -51,16 +60,11 @@
                                     </th>
                                 </tr>
                                 <tr id="choose">
-                                    <td @click="choose" class="topline center"><a
-                                            class="rate-off rate-offlarge margin-top" val="1" title="很不同意">1</a></td>
-                                    <td @click="choose" class="topline center"><a
-                                            class="rate-off rate-offlarge margin-top" val="2" title="不同意">2</a></td>
-                                    <td @click="choose" class="topline center"><a
-                                            class="rate-off rate-offlarge margin-top" val="3" title="一般">3</a></td>
-                                    <td @click="choose" class="topline center"><a
-                                            class="rate-off rate-offlarge margin-top" val="4" title="同意">4</a></td>
-                                    <td @click="choose" class="topline center"><a
-                                            class="rate-off rate-offlarge margin-top" val="5" title="很同意">5</a></td>
+                                    <td @click="choose" class="topline center"><a class="rate-off rate-offlarge margin-top" val="1" title="很不同意">1</a></td>
+                                    <td @click="choose" class="topline center"><a class="rate-off rate-offlarge margin-top" val="2" title="不同意">2</a></td>
+                                    <td @click="choose" class="topline center"><a class="rate-off rate-offlarge margin-top" val="3" title="一般">3</a></td>
+                                    <td @click="choose" class="topline center"><a class="rate-off rate-offlarge margin-top" val="4" title="同意">4</a></td>
+                                    <td @click="choose" class="topline center"><a class="rate-off rate-offlarge margin-top" val="5" title="很同意">5</a></td>
                                 </tr>
                             </tbody>
                         </table>
