@@ -128,10 +128,6 @@
                                     mydata = json_data
                                 }
                             });
-                            console.log(mydata[0].sex)
-                            if (mydata[0].sex == "男") {
-                                me([27.6, 31, 27.6, 28.2, 20.9])
-                            }
                             for (var i = 0; i < mydata.length; i++) {
                                 console.log(i)
                                 re +=
@@ -155,7 +151,6 @@
                                 option.radar.indicator[2].name = '外倾性: ' + mydata[this.name].extraversion
                                 option.radar.indicator[3].name = '宜人性: ' + mydata[this.name].agreeableness
                                 option.radar.indicator[4].name = '神经质: ' + mydata[this.name].neuroticism
-                                console.log(option)
                                 location.href = "#main";
                                 myChart.setOption(option);
                                 //导出word
@@ -164,10 +159,10 @@
                                 var e = mydata[this.name].extraversion
                                 var n = mydata[this.name].neuroticism
                                 var o = mydata[this.name].open
-                                var path = "http://47.99.164.238:9832/result/bigfive2word?open=" + o + "&conscientiousness=" + c + "&extraversion=" + e + "&agreeableness=" + a + "&neuroticism=" + n
+                                var path = "http://47.99.164.238:9832/result/bigfive2word?open=" + o + "&conscientiousness=" + c + "&extraversion=" + e + "&agreeableness=" + a + "&neuroticism=" + n + "&sex=男"
                                 var btn = document.querySelector("#OutputWord")
                                 btn.addEventListener('click', function() {
-                                        console.log(typeof(path))
+                                        console.log(path)
                                         var xhr = new XMLHttpRequest();
                                         xhr.open('GET', path, true);
                                         xhr.setRequestHeader('version', '2');
@@ -181,7 +176,7 @@
                                                 reader.onload = function(e) {
                                                     // 转换完成后创建a标签下载
                                                     var a = document.createElement('a');
-                                                    a.download = "file.docx";
+                                                    a.download = "大五人格分析报告.docx";
                                                     a.href = e.target.result;
                                                     $("body").append(a);
                                                     a.click();
@@ -206,95 +201,92 @@
         </div>
         <div>
             <script type="text/javascript">
-                function me(myValue) {
-                    // document.getElementById("pic").style.visibility="hidden"
-                    // 基于准备好的dom，初始化echarts实例
-                    var myChart = echarts.init(document.getElementById('main'));
-                    // 指定图表的配置项和数据
-                    var option = {
-                        title: {},
-                        color: ['#ff3333', '#00bbff'],
-                        tooltip: {},
-                        legend: {
-                            data: ['我的得分', '平均水平'],
-                            y: 'top',
-                            x: '63%',
-                            orient: 'vertical',
-                            padding: [20, 0, 0, 0],
+                // document.getElementById("pic").style.visibility="hidden"
+                // 基于准备好的dom，初始化echarts实例
+                var myChart = echarts.init(document.getElementById('main'));
+                // 指定图表的配置项和数据
+                var option = {
+                    title: {},
+                    color: ['#ff3333', '#00bbff'],
+                    tooltip: {},
+                    legend: {
+                        data: ['我的得分', '平均水平'],
+                        y: 'top',
+                        x: '63%',
+                        orient: 'vertical',
+                        padding: [20, 0, 0, 0],
+                        textStyle: {
+                            fontSize: 14
+                        }
+                    },
+                    radar: {
+                        // shape: 'circle',
+                        radius: 88,
+                        name: {
                             textStyle: {
+                                color: '#000',
+                                backgroundColor: '#fff',
+                                borderRadius: 10,
+                                padding: [3, 5],
                                 fontSize: 14
                             }
                         },
-                        radar: {
-                            // shape: 'circle',
-                            radius: 88,
-                            name: {
-                                textStyle: {
-                                    color: '#000',
-                                    backgroundColor: '#fff',
-                                    borderRadius: 10,
-                                    padding: [3, 5],
-                                    fontSize: 14
-                                }
-                            },
-                            indicator: [{
-                                name: '开放性',
-                                max: 50,
-                                axisLabel: {
-                                    show: true,
-                                    fontSize: 10,
-                                    color: '#838D9E',
-                                    showMaxLabel: false, //不显示最大值，即外圈不显示数字30
-                                    showMinLabel: true, //显示最小数字，即中心点显示0
-                                },
-                            }, {
-                                name: '尽责性',
-                                max: 50
-                            }, {
-                                name: '外倾性',
-                                max: 50
-                            }, {
-                                name: '宜人性',
-                                max: 50
-                            }, {
-                                name: '神经质',
-                                max: 50
-                            }, ],
-                            splitLine: {
+                        indicator: [{
+                            name: '开放性',
+                            max: 50,
+                            axisLabel: {
                                 show: true,
-                                lineStyle: {
-                                    width: 2,
-                                    color: 'rgba(0,141,158,.1)', // 设置网格的颜色
-                                },
+                                fontSize: 10,
+                                color: '#838D9E',
+                                showMaxLabel: false, //不显示最大值，即外圈不显示数字30
+                                showMinLabel: true, //显示最小数字，即中心点显示0
                             },
-                        },
-                        series: [{
-                            name: '预算 vs 开销（Budget vs spending）',
-                            type: 'radar',
-                            /*曲线圆点*/
+                        }, {
+                            name: '尽责性',
+                            max: 50
+                        }, {
+                            name: '外倾性',
+                            max: 50
+                        }, {
+                            name: '宜人性',
+                            max: 50
+                        }, {
+                            name: '神经质',
+                            max: 50
+                        }, ],
+                        splitLine: {
+                            show: true,
                             lineStyle: {
                                 width: 2,
+                                color: 'rgba(0,141,158,.1)', // 设置网格的颜色
                             },
-                            // areaStyle: {normal: {}},
-                            data: [{
-                                value: [0, 0, 0, 0, 0],
-                                name: '我的得分'
-                            }, {
-                                value: myValue,
-                                name: '平均水平'
-                            }]
+                        },
+                    },
+                    series: [{
+                        name: '预算 vs 开销（Budget vs spending）',
+                        type: 'radar',
+                        /*曲线圆点*/
+                        lineStyle: {
+                            width: 2,
+                        },
+                        // areaStyle: {normal: {}},
+                        data: [{
+                            value: [0, 0, 0, 0, 0],
+                            name: '我的得分'
+                        }, {
+                            value: [27.6, 31, 27.6, 28.2, 20.9],
+                            name: '平均水平'
                         }]
-                    };
-                    option.series[0].data[0].value[0]
-                        // option.series[0].data[0].value[0]=data[0].open;
-                        // option.series[0].data[0].value[1]=data[0].conscientious;
-                        // option.series[0].data[0].value[2]=data[0].outgoing;
-                        // option.series[0].data[0].value[3]=data[0].pleasant;
-                        // option.series[0].data[0].value[4]=data[0].neurotic;
-                        // 使用刚指定的配置项和数据显示图表。
-                    myChart.setOption(option);
-                }
-                me([27.3, 31.3, 27.3, 29.7, 21.8]);
+                    }]
+                };
+                option.series[0].data[0].value[0]
+                    // option.series[0].data[0].value[0]=data[0].open;
+                    // option.series[0].data[0].value[1]=data[0].conscientious;
+                    // option.series[0].data[0].value[2]=data[0].outgoing;
+                    // option.series[0].data[0].value[3]=data[0].pleasant;
+                    // option.series[0].data[0].value[4]=data[0].neurotic;
+                    // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
             </script>
         </div>
 
