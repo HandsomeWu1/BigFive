@@ -1,6 +1,6 @@
 var problems = null
     //var path = "http://192.168.1.102:82"
-    // var path = "http://localhost:82"
+    //var path = "http://localhost:9832"
 var path = "http://47.99.164.238:9832"
 var btn = document.querySelector("#btn")
     // var app1 = new Vue({
@@ -30,7 +30,7 @@ btn.addEventListener('click', function() {
     var uname = document.querySelector("#uname")
     var uage = document.querySelector("#uage")
     var sex = document.querySelector("#SEX").selectedIndex //性别1男2女
-    var group = document.querySelector("#group").selectedIndex //选择组织
+    var org = document.querySelector("#org").selectedIndex //选择组织
     var phone = document.querySelector("#phone")
     var notdone = []
         // console.log(uname.value, sex, phone.value, uage.value)
@@ -53,7 +53,7 @@ btn.addEventListener('click', function() {
     }
     if (notdone.length != 0) {
         alert("第" + notdone + "题还没完成")
-    } else if (uname.value == "" || phone.value == "" || uage.value == "" || sex == 0 || group == 0) {
+    } else if (uname.value == "" || phone.value == "" || uage.value == "" || sex == 0 || org == 0) {
         alert("姓名或手机号或年龄或性别或组织未输入")
     } else if (notdone.length == 0) {
         if (sex == 1) {
@@ -65,10 +65,12 @@ btn.addEventListener('click', function() {
             age: uage.value,
             list: mychoose,
             // list:[4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4],
-            group: group,
+            org: org,
             name: uname.value,
             telephone: phone.value,
+            sex: sex
         }).then(function(response) {
+
             alert(response.data)
             if (response.data == "success") {
                 window.location = "result.html"

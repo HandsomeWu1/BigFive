@@ -36,7 +36,7 @@
             <div class="form-group">
                 <lable><span class="req">*</span>您想要加入的组织</lable>
                 <br>
-                <select name="group" id="group" class="form-control sex">
+                <select name="org" id="org" class="form-control sex">
                     <option value="none">请选择</option>
                     <option value="1">创业苗圃</option>
                     <option value="2">创业班</option>
@@ -55,25 +55,25 @@
                             <span class="jqradiowrapper">
                             <input type="radio" value="1" id="q4_1" v-bind:name="item[0].num" v-bind:protype="item[0].type">
                         </span>
-                            <div class="question">1 {{item[0].description}}；{{item[0].type}}</div>
+                            <div class="question">1 {{item[0].description}}；</div>
                         </div>
                         <div class="questionBox">
                             <span class="jqradiowrapper">
                             <input type="radio" value="2" id="q4_2" v-bind:name="item[0].num"  v-bind:protype="item[1].type">
                         </span>
-                            <div class="question">2 {{item[1].description}} ；{{item[1].type}}</div>
+                            <div class="question">2 {{item[1].description}} ；</div>
                         </div>
                         <div class="questionBox">
                             <span class="jqradiowrapper">
                             <input type="radio" value="3" id="q4_3" v-bind:name="item[0].num" v-bind:protype="item[2].type">
                         </span>
-                            <div class="question">3 {{item[2].description}}；{{item[2].type}}</div>
+                            <div class="question">3 {{item[2].description}}；</div>
                         </div>
                         <div class="questionBox">
                             <span class="jqradiowrapper">
                             <input type="radio" value="4" id="q4_4" v-bind:name="item[0].num" v-bind:protype="item[3].type">
                         </span>
-                            <div class="question">4 {{item[3].description}}。{{item[3].type}}</div>
+                            <div class="question">4 {{item[3].description}}。</div>
                         </div>
                     </div>
                 </block>

@@ -14,7 +14,6 @@
     <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 
     <style>
-        
         .login-button {
             /* 按钮美化 */
             width: 300px;
@@ -112,10 +111,8 @@
                             var formdata = new FormData()
                             formdata.append("name", document.getElementById("name1").value)
                             $.ajax({
-                                // url: "http://kalistar.cn:82/result1",
-                                // url: "http://localhost:82/result1",
                                 url: "http://47.99.164.238:9832/result/getDisc",
-                                //url:"http://localhost:82/result/getDisc",
+                                //url:"http://localhost:9832/result/getDisc",
                                 data: formdata,
                                 type: "post",
                                 dataType: "json",
@@ -124,10 +121,9 @@
                                 contentType: false,
                                 processData: false,
                                 success: function(json_data) {
-                                    if(json_data==0){
+                                    if (json_data == 0) {
                                         alert("查无此人")
-                                    }
-                                    else{
+                                    } else {
                                         alert("查询成功")
                                     }
                                     console.log(json_data)
@@ -140,7 +136,6 @@
                                     //  '<div class="question"  onclick="chen">'+(i+1)+'.'+mydata[i].name+'&nbsp&nbsp&nbsp&nbsp'+mydata[i].telephone+'</div>'         +
                                     ' <button  id="fun"  class="login-button"  name=' + i + '>' + (i + 1) + '.' + mydata[i].name + '&nbsp&nbsp&nbsp&nbsp' + mydata[i].telephone + '&nbsp&nbsp&nbsp&nbsp' + mydata[i].time + '</button></br></br>'
                             }
-
                             // re += '<div style="margin-bottom: 100px;"></div>';
 
                             document.getElementById("query_item").innerHTML = re;
@@ -163,7 +158,6 @@
 
                                 // option.series[0].data[0].value[0]
                             });
-
                         }
                     </script>
                 </div>
