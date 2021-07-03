@@ -163,28 +163,7 @@
                                 var btn = document.querySelector("#OutputWord")
                                 btn.addEventListener('click', function() {
                                         console.log(path)
-                                        var xhr = new XMLHttpRequest();
-                                        xhr.open('GET', path, true);
-                                        xhr.setRequestHeader('version', '2');
-                                        xhr.responseType = "blob"; // 设置返回类型blob
-                                        // 定义请求完成的处理函数，请求前也可以增加 加载框/禁用下载按钮的相关逻辑
-                                        xhr.onload = function() {
-                                            if (this.status === 200) {
-                                                var blob = this.response;
-                                                var reader = new FileReader();
-                                                reader.readAsDataURL(blob); // 转换为base64，可以直接放入a标签href
-                                                reader.onload = function(e) {
-                                                    // 转换完成后创建a标签下载
-                                                    var a = document.createElement('a');
-                                                    a.download = "大五人格分析报告.docx";
-                                                    a.href = e.target.result;
-                                                    $("body").append(a);
-                                                    a.click();
-                                                    $(a).remove();
-                                                }
-                                            }
-                                        };
-                                        xhr.send() //发送ajax请求
+                                        window.open(path)
                                     })
                                     // option.series[0].data[0].value[0]
 
