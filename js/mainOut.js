@@ -54,7 +54,7 @@ btn.addEventListener('click', function() {
     if (notdone.length != 0) {
         alert("第" + notdone + "题还没完成")
     } else if (uname.value == "" || uage.value == "" || sex == 0) {
-        alert("姓名或手机号或年龄或性别或组织未输入")
+        alert("姓名或年龄或性别未输入")
     } else if (notdone.length == 0) {
         if (sex == 1) {
             sex = "男"

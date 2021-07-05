@@ -3,15 +3,16 @@
 
 <head>
     <meta charset="utf-8">
-    <title>大五结果查询</title>
+    <title>DISC结果查询</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="myCss.css" />
-    <link rel="stylesheet" type="text/css" href="progress.css" />
+    <link rel="stylesheet" type="text/css" href="../style/myCss.css" />
+    <link rel="stylesheet" type="text/css" href="../style/progress.css" />
 
     <!-- 引入 echarts.js -->
     <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
     <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
     <style>
         .login-button {
             /* 按钮美化 */
@@ -89,7 +90,7 @@
                 <img style="margin: 0 auto;width: 80%;" src="http://kalistar.cn/chen/welcome.png">
             </div>
             <div class="title" align="center" style="margin-top: 30px;">
-                <h1>THE BIG FIVE 大五类人格测试</h1>
+                <h1>DISC人格测试</h1>
             </div>
             <div class="" style="width: 380px;height: 80px;display: flex;flex-direction: row;">
                 <div class="inputR">
@@ -110,9 +111,8 @@
                             var formdata = new FormData()
                             formdata.append("name", document.getElementById("name1").value)
                             $.ajax({
-                                // url: "http://kalistar.cn:82/result1",
-                                //  url: "http://localhost:9832/result/getBigfive", 
-                                url: "http://47.99.164.238:9832/result/getBigfive",
+                                url: "http://47.99.164.238:9832/result/getDisc",
+                                //url:"http://localhost:9832/result/getDisc",
                                 data: formdata,
                                 type: "post",
                                 dataType: "json",
@@ -121,10 +121,12 @@
                                 contentType: false,
                                 processData: false,
                                 success: function(json_data) {
-                                    if (json_data == 0)
+                                    if (json_data == 0) {
                                         alert("查无此人")
-                                    else
+                                    } else {
                                         alert("查询成功")
+                                    }
+                                    console.log(json_data)
                                     mydata = json_data
                                 }
                             });
@@ -134,49 +136,34 @@
                                     //  '<div class="question"  onclick="chen">'+(i+1)+'.'+mydata[i].name+'&nbsp&nbsp&nbsp&nbsp'+mydata[i].telephone+'</div>'         +
                                     ' <button  id="fun"  class="login-button"  name=' + i + '>' + (i + 1) + '.' + mydata[i].name + '&nbsp&nbsp&nbsp&nbsp' + mydata[i].telephone + '&nbsp&nbsp&nbsp&nbsp' + mydata[i].time + '</button></br></br>'
                             }
-
                             // re += '<div style="margin-bottom: 100px;"></div>';
 
                             document.getElementById("query_item").innerHTML = re;
                             // document.write(re);
                             $('button[id="fun"]').click(function() {
-                                console.log("mydattttttttttttttttttttta" + mydata)
-                                option.series[0].data[0].value[0] = mydata[this.name].open
-                                option.series[0].data[0].value[1] = mydata[this.name].conscientiousness
-                                option.series[0].data[0].value[2] = mydata[this.name].extraversion
-                                option.series[0].data[0].value[3] = mydata[this.name].agreeableness
-                                option.series[0].data[0].value[4] = mydata[this.name].neuroticism
-                                option.radar.indicator[0].name = '开放性: ' + mydata[this.name].open
-                                option.radar.indicator[1].name = '尽责性: ' + mydata[this.name].conscientiousness
-                                option.radar.indicator[2].name = '外倾性: ' + mydata[this.name].extraversion
-                                option.radar.indicator[3].name = '宜人性: ' + mydata[this.name].agreeableness
-                                option.radar.indicator[4].name = '神经质: ' + mydata[this.name].neuroticism
+                                console.log(mydata)
+                                option.series[0].data[0].value[0] = mydata[this.name].dominance
+                                option.series[0].data[0].value[1] = mydata[this.name].influence
+                                option.series[0].data[0].value[2] = mydata[this.name].steadiness
+                                option.series[0].data[0].value[3] = mydata[this.name].compliance
+                                    // option.series[0].data[0].value[4] = mydata[this.name].neurotic
+                                option.radar.indicator[0].name = 'D:支配性: ' + mydata[this.name].dominance
+                                option.radar.indicator[1].name = 'I:影响性: ' + mydata[this.name].influence
+                                option.radar.indicator[2].name = 'S:稳固性: ' + mydata[this.name].steadiness
+                                option.radar.indicator[3].name = 'C:尽责性: ' + mydata[this.name].compliance
+                                    // option.radar.indicator[4].name = '神经质: ' + mydata[this.name].neurotic
+                                console.log(option)
                                 location.href = "#main";
                                 myChart.setOption(option);
-                                //导出word
-                                var a = mydata[this.name].agreeableness
-                                var c = mydata[this.name].conscientiousness
-                                var e = mydata[this.name].extraversion
-                                var n = mydata[this.name].neuroticism
-                                var o = mydata[this.name].open
-                                var path = "http://47.99.164.238:9832/result/bigfive2word?open=" + o + "&conscientiousness=" + c + "&extraversion=" + e + "&agreeableness=" + a + "&neuroticism=" + n + "&sex=男"
-                                var btn = document.querySelector("#OutputWord")
-                                btn.addEventListener('click', function() {
-                                        console.log(path)
-                                        window.open(path)
-                                    })
-                                    // option.series[0].data[0].value[0]
 
+                                // option.series[0].data[0].value[0]
                             });
-
                         }
                     </script>
                 </div>
             </div>
-            <div id="main" class="" style="width: 100%;height: 240px;margin-top: 20px;"></div>
-            <button id="OutputWord">导出word</button>
+            <div id="main" class="" style="width: 100%;height: 240px;margin-top: 20px;float: left;"></div>
             <div style="width: 100%;height: 310px;"></div>
-
         </div>
         <div>
             <script type="text/javascript">
@@ -211,8 +198,8 @@
                             }
                         },
                         indicator: [{
-                            name: '开放性',
-                            max: 50,
+                            name: 'D:支配性',
+                            max: 40,
                             axisLabel: {
                                 show: true,
                                 fontSize: 10,
@@ -221,17 +208,14 @@
                                 showMinLabel: true, //显示最小数字，即中心点显示0
                             },
                         }, {
-                            name: '尽责性',
-                            max: 50
+                            name: 'I:影响性',
+                            max: 36
                         }, {
-                            name: '外倾性',
-                            max: 50
+                            name: 'S:稳固性',
+                            max: 36
                         }, {
-                            name: '宜人性',
-                            max: 50
-                        }, {
-                            name: '神经质',
-                            max: 50
+                            name: 'C:尽责性',
+                            max: 36
                         }, ],
                         splitLine: {
                             show: true,
@@ -250,10 +234,10 @@
                         },
                         // areaStyle: {normal: {}},
                         data: [{
-                            value: [0, 0, 0, 0, 0],
+                            value: [9, 9, 9, 9],
                             name: '我的得分'
                         }, {
-                            value: [27.6, 31, 27.6, 28.2, 20.9],
+                            value: [9, 9, 9, 9],
                             name: '平均水平'
                         }]
                     }]
@@ -268,9 +252,7 @@
                 myChart.setOption(option);
             </script>
         </div>
-
     </div>
-
 </body>
 
 </html>

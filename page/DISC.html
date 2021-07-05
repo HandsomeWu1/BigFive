@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.css">
+    <link rel="stylesheet" href="../style/DISC.css">
+    <!-- <link rel="canonical" href="https://www.wjx.cn/jq/75857609.aspx"> -->
+    <title>这是一份关于性格测量的表单</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <h2 class="title">这是一份关于性格测量的表单</h1>
+        <div class="container container-small middle">
+            <div class="form-group">
+                <lable><span class="req">*</span>姓名</lable>
+                <input type="text" class="form-control" id="uname">
+            </div>
+            <div class="form-group">
+                <lable><span class="req">*</span>年龄</lable>
+                <input type="text" class="form-control" id="uage">
+            </div>
+            <div class="form-group">
+                <lable><span class="req">*</span>性别</lable>
+                <br>
+                <select name="sex" id="SEX" class="form-control sex">
+                    <option value="none">请选择</option>
+                    <option value="">男</option>
+                    <option value="female">女</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <lable><span class="req">*</span>您想要加入的组织</lable>
+                <br>
+                <select name="org" id="org" class="form-control sex">
+                    <option value="none">请选择</option>
+                    <option value="1">创业苗圃</option>
+                    <option value="2">创业班</option>
+                    <option value="3">创艺苗圃</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <lable><span class="req">*</span>手机号</lable>
+                <input type="text" class="form-control" id="phone">
+            </div>
+            <div class="field ui-field-contain" id="app" req="1" topic="4" data-role="fieldcontain" type="3">
+                <block v-for="(item , index) in problems">
+                    <div class="field-label">{{index+1}}<span class="req">*</span></div>
+                    <div class="ui-controlgroup" id="choose">
+                        <div class="questionBox">
+                            <span class="jqradiowrapper">
+                            <input type="radio" value="1" id="q4_1" v-bind:name="item[0].num" v-bind:protype="item[0].type">
+                        </span>
+                            <div class="question">1 {{item[0].description}}；</div>
+                        </div>
+                        <div class="questionBox">
+                            <span class="jqradiowrapper">
+                            <input type="radio" value="2" id="q4_2" v-bind:name="item[0].num"  v-bind:protype="item[1].type">
+                        </span>
+                            <div class="question">2 {{item[1].description}} ；</div>
+                        </div>
+                        <div class="questionBox">
+                            <span class="jqradiowrapper">
+                            <input type="radio" value="3" id="q4_3" v-bind:name="item[0].num" v-bind:protype="item[2].type">
+                        </span>
+                            <div class="question">3 {{item[2].description}}；</div>
+                        </div>
+                        <div class="questionBox">
+                            <span class="jqradiowrapper">
+                            <input type="radio" value="4" id="q4_4" v-bind:name="item[0].num" v-bind:protype="item[3].type">
+                        </span>
+                            <div class="question">4 {{item[3].description}}。</div>
+                        </div>
+                    </div>
+                </block>
+            </div>
+            <button class="btn btn-primary" style="width: 100%; margin-top: 30px;" id="btn">提交</button>
+        </div>
+</body>
+<script src="../js/DISC.js"></script>
+
+</html>
