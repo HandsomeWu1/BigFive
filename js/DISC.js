@@ -50,7 +50,6 @@ btn.addEventListener('click', function() {
             }
         })
     }
-    //     notdone = []
 })
 
 
@@ -62,9 +61,7 @@ function getProblems() {
 
         for (let index = 0; index < problems.length; index++) {
             problems[index][0].num = problems[index][0].num + ""
-
         }
-        console.log(problems)
         var app = new Vue({
             el: "#app",
             data: {
@@ -74,20 +71,24 @@ function getProblems() {
                 choose: function(e) {
                     // console.log(e.target.getAttribute('val'))
                     var fathers = e.target.parentNode.parentNode.children
+                    console.log(fathers)
                     for (let i = 0; i < 5; i++) {
                         let tmp = fathers[i].children[0]
-                            // console.log(tmp)
                         tmp.setAttribute("selected", 0)
-                            // console.log(tmp)
                         tmp.style = ""
                     }
                     e.target.style = "background-color: lightblue; color: white;"
                     e.target.setAttribute('selected', 1)
-                        // console.log(e.target)
-                        // console.log(fathers)
+                },
+                bigchoose(e) {
+                    console.log(e.target.parentNode.children[0].children)
+                    let ipt = e.target.parentNode.children[0].children[0]
+                    ipt.click()
+                    return
                 }
             }
         })
     })
 }
-window.onload = getProblems;
+
+window.onload = getProblems();

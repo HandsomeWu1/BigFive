@@ -84,6 +84,11 @@ function getProblems() {
                     e.target.setAttribute('selected', 1)
                         // console.log(e.target)
                         // console.log(fathers)
+                },
+                bigchoose(e) {
+                    console.log(e.target.parentNode.children[0].children)
+                    let ipt = e.target.parentNode.children[0].children[0]
+                    ipt.click()
                 }
             }
         })

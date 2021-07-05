@@ -37,29 +37,29 @@
                 <block v-for="(item , index) in problems">
                     <div class="field-label">{{index+1}}<span class="req">*</span></div>
                     <div class="ui-controlgroup" id="choose">
-                        <div class="questionBox">
+                        <div class="questionBox" @click="bigchoose($event)">
                             <span class="jqradiowrapper">
-                            <input type="radio" value="1" id="q4_1" v-bind:name="item[0].num" v-bind:protype="item[0].type">
-                        </span>
-                            <div class="question">1 {{item[0].description}}；</div>
+                                <input type="radio" value="1" id="q4_1" v-bind:name="item[0].num" v-bind:protype="item[0].type">
+                            </span>
+                            <div class="question">{{item[0].description}}；</div>
                         </div>
-                        <div class="questionBox">
+                        <div class="questionBox" @click="bigchoose($event)">
                             <span class="jqradiowrapper">
-                            <input type="radio" value="2" id="q4_2" v-bind:name="item[0].num"  v-bind:protype="item[1].type">
-                        </span>
-                            <div class="question">2 {{item[1].description}} ；</div>
+                                <input type="radio" value="2" id="q4_2" v-bind:name="item[0].num"  v-bind:protype="item[1].type">
+                            </span>
+                            <div class="question">{{item[1].description}} ；</div>
                         </div>
-                        <div class="questionBox">
+                        <div class="questionBox" @click="bigchoose($event)">
                             <span class="jqradiowrapper">
-                            <input type="radio" value="3" id="q4_3" v-bind:name="item[0].num" v-bind:protype="item[2].type">
-                        </span>
-                            <div class="question">3 {{item[2].description}}；</div>
+                                <input type="radio" value="3" id="q4_3" v-bind:name="item[0].num" v-bind:protype="item[2].type">
+                            </span>
+                            <div class="question">{{item[2].description}}；</div>
                         </div>
-                        <div class="questionBox">
+                        <div class="questionBox" @click="bigchoose($event)">
                             <span class="jqradiowrapper">
-                            <input type="radio" value="4" id="q4_4" v-bind:name="item[0].num" v-bind:protype="item[3].type">
-                        </span>
-                            <div class="question">4 {{item[3].description}}。</div>
+                                <input type="radio" value="4" id="q4_4" v-bind:name="item[0].num" v-bind:protype="item[3].type">
+                            </span>
+                            <div class="question">{{item[3].description}}。</div>
                         </div>
                     </div>
                 </block>
