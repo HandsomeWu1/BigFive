@@ -3,28 +3,6 @@ var problems = null
     //var path = "http://localhost:9832"
 var path = "http://47.99.164.238:9832"
 var btn = document.querySelector("#btn")
-    // var app1 = new Vue({
-    //     el: "#btn",
-    //     data: {
-    //         problems: problems
-    //     },
-    //     methods: {
-    //         choose: function(e) {
-    //             console.log(e.target.getAttribute('val'))
-
-//             var fathers = e.target.parentNode.parentNode.children
-//             for (let i = 0; i < 5; i++) {
-//                 let tmp = fathers[i].children[0]
-//                     // console.log(tmp)
-//                 tmp.setAttribute("selected", "false")
-//                 tmp.style = ""
-//             }
-//             e.target.style = "background-color: lightblue; color: white;"
-//             e.target.setAttribute('selected', "true")
-//                 // console.log(fathers)
-//         }
-//     }
-// })
 
 btn.addEventListener('click', function() {
     var uname = document.querySelector("#uname")
@@ -77,18 +55,6 @@ btn.addEventListener('click', function() {
             }
         })
     }
-    // axios.post(path + "/result/newBigfive", {
-    //     age: uage.value,
-    //     //list: mychoose,
-    //     list:[4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4],
-    //     name: uname.value,
-    //     telephone: phone.value,
-    // }).then(function(response) {
-    //     alert(response.data)
-    //     if (response.data == "success") {
-    //         window.location = "result.html"
-    //     }
-    // })
 })
 
 

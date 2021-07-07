@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>管理员界面</title>
+  <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.css">
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="../js/admin.js"></script>
+  <style>
+    .date {
+      border: 1px solid lightblue;
+      /* color: lightblue; */
+    }
+
+    .box {
+      margin-top: 30px;
+      height: 200px;
+      width: 80%;
+      margin-left: 10%;
+    }
+
+    .red {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <form id="form" action="https://www.baidu.com">
+      <fieldset class="form-group">
+        <div class="form-group">
+          <lable><span class="req"></span>选择查询组织</lable>
+          <br>
+          <select name="org" id="org" class="form-control sex">
+            <option value="0">请选择(不选默认导出全部组织)</option>
+            <option value="1">创业苗圃</option>
+            <option value="2">创业班</option>
+            <option value="3">创艺苗圃</option>
+            <option value="4">其他组织</option>
+          </select>
+        </div>
+        <div class="">
+          <lable><span class="red">*</span>选择测试类型</lable>
+          <br>
+          <select name="type" id="type" class="form-control sex">
+            <option value="1">大五人格测试</option>
+            <option value="2">DISC</option>
+          </select>
+        </div>
+      </fieldset>
+      <div class="form-group row">
+        <label for="beginDate" class="col-sm-2 col-form-label"><span class="red">*</span>开始时间</label>
+        <div class="col-sm-10">
+          <input type="date" class="form-control" name="begin" id="begin" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="endDate" class="col-sm-2 col-form-label"><span class="red">*</span>结束时间</label>
+        <div class="col-sm-10">
+          <input type="date" class="form-control" name="end" id="end" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-10">
+          <button type="submit" class="btn btn-primary" id="btn">导出</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</body>
+
+</html>
